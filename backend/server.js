@@ -29,7 +29,10 @@ app.set('io', io);
 
 // Middleware
 app.use(cors({
-  origin: process.env.FRONTEND_URL || "http://localhost:5173",
+  origin: [
+    "http://localhost:5173", 
+    "https://help-hub-01.vercel.app/" // Add your actual Vercel URL here
+  ],
   credentials: true
 }));
 app.use(express.json());
