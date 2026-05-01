@@ -27,7 +27,11 @@ function App() {
       Notification.requestPermission();
     }
 
-    const socket = io(import.meta.env.VITE_API_URL);
+    
+const socket = io(import.meta.env.VITE_API_URL, {
+  transports: ['websocket', 'polling'],
+  withCredentials: true
+});
 
     socket.on('new_crisis', (crisis) => {
       // 2. SHOW IN-APP TOAST (What we had before)

@@ -29,11 +29,9 @@ app.set('io', io);
 
 // Middleware
 app.use(cors({
-  origin: [
-    "http://localhost:5173", 
-    "https://help-hub-01.vercel.app/" // Add your actual Vercel URL here
-  ],
-  credentials: true
+  origin: true, // This allows any origin to connect, which is safest for testing deployment
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"]
 }));
 app.use(express.json());
 
