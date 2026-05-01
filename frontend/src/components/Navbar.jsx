@@ -14,7 +14,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <nav className="navbar navbar-expand-lg navbar-dark  mb-4" style={{background:'#0b0f19'}}>
       <div className="container">
 
         {/* HelpHub Styled Logo */}
