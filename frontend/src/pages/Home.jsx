@@ -12,15 +12,11 @@ const Home = () => {
       {/* ================= CAROUSEL ================= */}
       <div id="crisisCarousel" className="carousel slide" data-bs-ride="carousel">
         <div className="carousel-inner">
-          <div className="carousel-item active">
-            <img src={crisis1} className="d-block w-100 carousel-img" alt="Relief work in India" />
-          </div>
-          <div className="carousel-item">
-            <img src={crisis2} className="d-block w-100 carousel-img" alt="Community support" />
-          </div>
-          <div className="carousel-item">
-            <img src={crisis3} className="d-block w-100 carousel-img" alt="Emergency medical aid" />
-          </div>
+          {[crisis1, crisis2, crisis3].map((img, i) => (
+            <div key={i} className={`carousel-item ${i === 0 ? "active" : ""}`}>
+              <img src={img} className="d-block w-100 carousel-img" alt="Relief visual" />
+            </div>
+          ))}
         </div>
 
         <button className="carousel-control-prev" type="button" data-bs-target="#crisisCarousel" data-bs-slide="prev">
@@ -34,27 +30,28 @@ const Home = () => {
       {/* ================= HERO ================= */}
       <section className="hero-section">
         <div className="container">
-          <div className="row align-items-center">
-            <div className="col-lg-6">
-              <h1 className="display-4 fw-bold mb-3">
+          <div className="row align-items-center gy-5">
+            <div className="col-lg-6 text-center text-lg-start">
+              <h1 className="display-5 display-lg-4 fw-bold mb-3">
                 Community-Led Crisis Response Platform
               </h1>
               <p className="lead mb-4">
-                Report emergencies, prioritize critical needs, and connect instantly 
-                with local volunteers and NGOs. Real-time coordination for faster, 
-                more transparent disaster relief.
+                Report emergencies, prioritize critical needs, and connect instantly
+                with local volunteers and NGOs.
               </p>
 
-              <Link to="/crises" className="btn btn-primary btn-lg me-3">
-                View Active Crises
-              </Link>
-              <Link to="/report-crisis" className="btn btn-danger btn-lg">
-                Report Emergency
-              </Link>
+              <div className="d-flex flex-column flex-sm-row gap-3 justify-content-center justify-content-lg-start">
+                <Link to="/crises" className="btn btn-primary btn-lg">
+                  View Active Crises
+                </Link>
+                <Link to="/report-crisis" className="btn btn-danger btn-lg">
+                  Report Emergency
+                </Link>
+              </div>
             </div>
 
             <div className="col-lg-6 text-center">
-              <img src={mainImg} alt="SocialHub Coordination" className="img-fluid hero-img" />
+              <img src={mainImg} alt="Coordination" className="img-fluid hero-img" />
             </div>
           </div>
         </div>
@@ -64,25 +61,28 @@ const Home = () => {
       <section className="features-section text-center">
         <div className="container">
           <h2 className="mb-5 fw-bold">Why HelpHub?</h2>
-          <div className="row">
-            <div className="col-md-4">
-              <div className="feature-card">
-                <h4>Smart Urgency Triage</h4>
-                <p>Our system analyzes crisis reports to highlight the most critical situations first.</p>
+          <div className="row g-4">
+            {[
+              {
+                title: "Smart Urgency Triage",
+                text: "Highlights the most critical situations first."
+              },
+              {
+                title: "Verified Helper Network",
+                text: "Connect with trusted NGOs and volunteers."
+              },
+              {
+                title: "Live Donation Tracker",
+                text: "Full transparency from donor to ground."
+              }
+            ].map((f, i) => (
+              <div key={i} className="col-12 col-md-6 col-lg-4">
+                <div className="feature-card h-100">
+                  <h4>{f.title}</h4>
+                  <p>{f.text}</p>
+                </div>
               </div>
-            </div>
-            <div className="col-md-4">
-              <div className="feature-card">
-                <h4>Verified Helper Network</h4>
-                <p>Directly link with trusted NGOs and volunteers on the ground for immediate impact.</p>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="feature-card">
-                <h4>Live Donation Tracker</h4>
-                <p>Ensure every resource reaches its destination with end-to-end transparency.</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -91,27 +91,14 @@ const Home = () => {
       <section className="how-section">
         <div className="container">
           <h2 className="text-center fw-bold mb-5">How It Works</h2>
-          <div className="row text-center">
-            <div className="col-md-3 step">
-              <div className="step-icon">1</div>
-              <h5>Report</h5>
-              <p>Submit incident details and GPS location.</p>
-            </div>
-            <div className="col-md-3 step">
-              <div className="step-icon">2</div>
-              <h5>Analyze</h5>
-              <p>Situations are categorized by severity and type.</p>
-            </div>
-            <div className="col-md-3 step">
-              <div className="step-icon">3</div>
-              <h5>Coordinate</h5>
-              <p>Verified responders receive high-priority alerts.</p>
-            </div>
-            <div className="col-md-3 step">
-              <div className="step-icon">4</div>
-              <h5>Resolve</h5>
-              <p>Monitor help in real-time until the crisis is closed.</p>
-            </div>
+          <div className="row text-center g-4">
+            {["Report", "Analyze", "Coordinate", "Resolve"].map((step, i) => (
+              <div key={i} className="col-6 col-md-3 step">
+                <div className="step-icon">{i + 1}</div>
+                <h5>{step}</h5>
+                <p className="small">Quick, structured, real-time flow.</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -120,23 +107,41 @@ const Home = () => {
       <section className="cta-section text-center">
         <div className="container">
           <h2 className="fw-bold mb-3">Be Part of the Solution</h2>
-          <p className="mb-4">Whether reporting a crisis or lending a hand, your contribution saves lives.</p>
+          <p className="mb-4">Your contribution saves lives.</p>
           <Link to="/register" className="btn btn-light btn-lg px-5">
             Join the Network
           </Link>
         </div>
       </section>
 
-      {/* ================= INTERNAL CSS ================= */}
+      {/* ================= RESPONSIVE CSS ================= */}
       <style>{`
         .carousel-img {
           height: 75vh;
           object-fit: cover;
         }
 
+        @media (max-width: 992px) {
+          .carousel-img {
+            height: 55vh;
+          }
+        }
+
+        @media (max-width: 576px) {
+          .carousel-img {
+            height: 40vh;
+          }
+        }
+
         .hero-section {
           padding: 90px 0;
           background: linear-gradient(to right, #f8f9fa, #ffffff);
+        }
+
+        @media (max-width: 768px) {
+          .hero-section {
+            padding: 50px 0;
+          }
         }
 
         .hero-img {
@@ -154,7 +159,6 @@ const Home = () => {
           background: white;
           box-shadow: 0 5px 20px rgba(0,0,0,0.08);
           transition: 0.3s;
-          height: 100%;
         }
 
         .feature-card:hover {
@@ -177,10 +181,6 @@ const Home = () => {
           margin: 0 auto 15px;
           font-weight: bold;
           font-size: 1.2rem;
-        }
-
-        .step {
-          padding: 20px;
         }
 
         .cta-section {
